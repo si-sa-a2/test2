@@ -30,8 +30,8 @@ jobs:
             <servers>
               <server>
                 <id>github</id>
-                <username>${{ secrets.GITHUB_ACTOR }}</username>
-                <password>${{ secrets.GITHUB_TOKEN }}</password>
+                <username>${{ secrets.ACTER }}</username>
+                <password>${{ secrets.ACCESS_TOKEN }}</password>
               </server>
             </servers>
           </settings>
