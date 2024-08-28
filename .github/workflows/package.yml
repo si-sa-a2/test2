@@ -20,13 +20,12 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
 
-    - name: Change directory to the project root
-      run: cd demo
-
     - name: Build with Maven
       run: mvn clean install
+      working-directory: demo
 
     - name: Publish to GitHub Packages
       run: mvn deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      working-directory: demo
