@@ -20,6 +20,22 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
 
+    - name: Set up Maven settings
+      run: echo "$MAVEN_SETTINGS" > $HOME/.m2/settings.xml
+      env:
+        MAVEN_SETTINGS: |
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <servers>
+              <server>
+                <id>github</id>
+                <username>${{ secrets.GITHUB_ACTOR }}</username>
+                <password>${{ secrets.GITHUB_TOKEN }}</password>
+              </server>
+            </servers>
+          </settings>
+
     - name: Build with Maven
       run: mvn clean install
       working-directory: demo
